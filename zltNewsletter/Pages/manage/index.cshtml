@@ -1,0 +1,68 @@
+﻿@page
+@model             indexModel
+
+@{
+    ViewData["Title"] = "Article Index";
+}
+
+<h1>Articles</h1>
+<hr />
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Article
+            </th>
+            <th>
+                Article Group
+            </th>
+            <th>
+                <a asp-page="newarticle" class="btn btn-primary btn-sm align-right">New article</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Article) {
+        <tr>
+            <td>
+                <div class="small">
+                    Created: @item.ArticleDateTime 
+                
+                    @if (item.ArticlePublished) { 
+                       <div class="badge bg-primary">
+                           Published
+                       </div>
+                    } else {
+                       <div class="badge bg-danger-subtle">
+                           Not published
+                       </div>
+                    }
+                    | @item.ArticleAuthor
+                </div>
+                <br />
+                @item.ArticleTitle <br />
+            </td>
+            <td>
+                    @item.ArticleSection.ArticleSectionName
+            </td>
+            <td>
+                
+                <div class="row">
+                    <div class="col">
+                        <a asp-page="./viewarticle" asp-route-id="@item.ArticleId"><img src="~/images/document-2-32.png" width="16px" height="16px" /></a>
+                    </div>
+                    <div class="col">
+                        <a asp-page="./editarticle" asp-route-id="@item.ArticleId"><img src="~/images/edit-property-32.png" width="16px" height="16px" /></a>
+                    </div>
+                    <div class="col">
+                        <form method="post">
+                            <button class="btn btn-link" style="padding: 0" asp-page-handler="Delete" asp-route-id="@item.ArticleId" onclick="return confirm('Are you sure ?')"><img src="~/images/x-mark-4-32.png" width="16px" height="16px" /></button>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        }   
+    </tbody>
+</table>

@@ -1,0 +1,27 @@
+﻿
+body {
+    font-family: 'Inter';
+    font-size: 14px;
+}
+
+.ArticleHeader {
+    font-family: 'Times New Roman';
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.ArticleTitle {
+    font-family: 'Times New Roman';
+    font-size: 18px;
+    font-style: italic;
+}
+
+.ArticleGroupTitle
+{
+    font-family: 'Times New Roman';
+    font-size: 22pt;
+    font-style: italic;
+    font-weight: 300;
+}
+

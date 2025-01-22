@@ -1,0 +1,51 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container">
+  <div class="row">
+
+    @foreach (var l3 in Model.Last3Articles)
+    {
+        <div class="col-md-4 mb-3">
+          <div class="card">
+                    <div style="font-style: italic; font-size: 8pt">@l3.ArticleSection.ArticleSectionName</div>
+            
+                <div class="card-body">
+                    <h5 class="card-title ArticleTitle">
+                           @l3.ArticleTitle
+                    </h5>
+                    <p class="card-text">
+                        @Html.Raw(l3.ArticleHeader)
+                    </p>
+                </div>
+         </div>
+        </div>
+    }
+  </div>
+</div>
+
+
+@foreach (var ag in Model.ArtGroup) {
+
+    <div class="ArticleGroupTitle">
+        <a asp-page="readgroup" asp-route-articleGroupId="@ag.ArticleSectionId">
+            @ag.ArticleSectionName
+           </a>
+
+           </div>
+
+    @foreach (var item in ag.Articles) {
+
+        <div class="mb-3">
+            <text class="ArticleTitle"> <img src="~/images/paper-16.png" /> &nbsp; @item.ArticleTitle <br /></text>
+            <div class="ArticleHeader">@Html.Raw(item.ArticleHeader)</div>
+        </div>
+    }   
+
+}
+
+
+

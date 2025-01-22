@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Newsletter Startpage";
+}
+
+
+<div class="text-center">
+
+    <div class="row">
+
+       <div class="col-4">
+            <div class="mt-4 p-5 bg-primary text-white rounded">
+                <span class="display-1">@Model.CountArticles</span>
+                <p>... articles</p>
+            </div>
+        </div>
+
+        <div class="col-4">
+            <div class="mt-4 p-5 bg-primary text-white rounded">
+                <span class="display-1">@Model.CountGroups</span>
+                <p>... sections</p>
+            </div>
+        </div>
+    
+    </div>
+</div>        
+
+    <div class="mt-3 lead">
+            ..... last 3 articles .....
+    </div>
+    <hr />
+    @foreach (var item in @Model.LastArticles) {
+        <text>
+        <img src="~/images/arrow-53-16.png" /> 
+        @item.ArticleTitle &nbsp;
+        (@item.ArticleSection.ArticleSectionName) 
+        <hr />
+        </text>
+    }
+

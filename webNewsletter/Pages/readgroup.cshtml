@@ -1,0 +1,44 @@
+﻿@page
+@model webNewsletter.Pages.readgroupModel
+
+@{
+
+}
+
+<span class="ArticleGroupTitle">@Model.ArticleGroup.ArticleSectionName</span>
+
+<hr />
+
+<span class="ArticleTitle">@Model.ReadArticle.ArticleTitle</span>
+
+<span class="ArticleHeader">@Html.Raw(Model.ReadArticle.ArticleHeader)</span>
+
+<div class="row">
+
+    <div class="col col-8">
+
+        @Html.Raw(Model.ReadArticle.ArticleText)
+
+    </div>
+
+    <div class="col col-4">
+        <div class="card">
+            <div class="card-header">
+                    Articles in this newsletter
+            </div>
+   
+            <div class="card-body">
+                    <div class="w-70 p3">
+                        @foreach (var artls in Model.GroupArticles) {
+                          <img src="~/images/file-earmark-richtext.svg" />  @artls.ArticleTitle <br />
+                        }
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,102 @@
+﻿@page
+@model             articlegroupModel
+
+@{
+   
+}
+
+<div class="row">
+    <div class="col">
+        <h1>Article Sections</h1>
+    </div>
+    <div class="col text-end">
+        <!-- Button to Open the Modal -->
+        <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#PopUpGroup">
+            New Section
+        </button>
+        &nbsp;
+        <a asp-page="newarticle" class="btn btn-sm btn-primary">New article</a>
+    </div>
+</div>
+
+<hr />
+
+
+<!-- The Modal -->
+<div class="modal" id="PopUpGroup">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <form method="post">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">New Article Section</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                    Section Name: <input type="text" size="60" name="NewArticleGroupName" /> <br />
+                    Active: <input type="checkbox" class="form-check-input" checked name="NewArticleGroupActive" />
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                    <input type="submit" value="Save" asp-page-handler="SaveNew" class="btn btn-primary" />
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Article Section name
+            </th>
+            <th>
+                Active ?
+            </th>
+            <th>
+                Date (sorting)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var item in Model.ArticleSection) {
+        <form method="post">
+        <tr>
+            <td>
+               <input type="text" size="60" asp-for="@item.ArticleSectionName" name="UpdGroupName" />
+
+            </td>
+            <td>
+                <input type="checkbox" asp-for="@item.ArticleSectionActive" name="UpdGrpActive" />
+            </td>
+
+            <td>
+                <input type="date" asp-for="@item.ArticleSectionCreateDate" name="UpdDate" />
+            </td>
+            <td>
+                    <button class="btn btn-sm btn-primary" type="submit" asp-page-handler="SaveUpdate" asp-route-id="@item.ArticleSectionId">Update</button>
+                    <button class="btn btn-sm btn-danger" type="submit" asp-page-handler="Delete" asp-route-id="@item.ArticleSectionId" onclick="return confirm('Are you sure?')">Delete</button>
+            </td>
+        </tr>
+        <tr>
+             <td colspan="4">
+                     @foreach (var articles in item.Articles)
+                       {
+                           <text>- </text> @articles.ArticleTitle 
+                             <a asp-page="./editarticle" asp-route-id="@articles.ArticleId" asp-route-rtrPage="articlegroup"><img src="~/images/edit-property-32.png" width="16px" height="16px" /></a>
+                             <br />
+                       }
+            </td>
+        </tr>
+        </form>
+        }
+    </tbody>
+</table>
+

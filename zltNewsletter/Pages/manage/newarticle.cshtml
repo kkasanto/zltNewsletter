@@ -1,0 +1,21 @@
+﻿@page
+@model             newarticleModel
+
+@{
+    ViewData["Title"] = "newarticle";
+}
+
+<h1>New Article</h1>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <partial name="_article_form" model="Model.Article" />
+}
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
