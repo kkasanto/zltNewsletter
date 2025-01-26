@@ -24,13 +24,21 @@ namespace zltNewsletter.Pages.manage
         [BindProperty]
         public Article Article { get; set; } = new Article();
 
+        [BindProperty]
+        public string? ReturnPage { get; set; }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(string? rtrPage)
         {
             ViewData["ArticleSectionId"] = new SelectList(_context.ArticleSection, "ArticleSectionId", "ArticleSectionName");
 
             // preset articleid to 0 - when using partial for form with both edit and create
             Article.ArticleId = 0;
+
+            // If no returnpage is indicated, set to index, otherwise set field ReturnPage on page (hidden input)
+            if (rtrPage != null)
+                ReturnPage = rtrPage;
+            else
+                ReturnPage = "index";
 
             return Page();
         }
@@ -48,7 +56,7 @@ namespace zltNewsletter.Pages.manage
             _context.Article.Add(Article);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage(ReturnPage);
         }
     }
 }

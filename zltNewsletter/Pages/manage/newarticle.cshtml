@@ -1,18 +1,18 @@
 ﻿@page
-@model             newarticleModel
+@model newarticleModel
 
 @{
     ViewData["Title"] = "newarticle";
 }
 
 <h1>New Article</h1>
-<hr />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <partial name="_article_form" model="Model.Article" />
+    <input type="hidden" asp-for="ReturnPage" />
 }
 
 

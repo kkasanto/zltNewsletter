@@ -5,7 +5,6 @@ using zltNewsletter.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 // Add services to the container.
 
 // -- Database Connection
@@ -23,7 +22,13 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddMvcCore(
     options => options.EnableEndpointRouting = false);
 
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/manage");
+    options.Conventions.AuthorizePage("/index");
+}
+
+);
 
 var app = builder.Build();
 

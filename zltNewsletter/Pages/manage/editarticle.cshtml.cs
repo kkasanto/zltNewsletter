@@ -29,7 +29,7 @@ namespace zltNewsletter.Pages.manage
         [BindProperty]
         public int? TransferID { get; set; }
 
-        // Indicate on entry, where to redirect after post 
+        // Indicate on entry to page, where to redirect after post 
         [BindProperty]
         public string ReturnPage { get; set; }
 
@@ -57,6 +57,7 @@ namespace zltNewsletter.Pages.manage
                 ReturnPage = rtrPage;
             else
                 ReturnPage = "index";
+
 
             return Page();
         }
@@ -96,10 +97,5 @@ namespace zltNewsletter.Pages.manage
         {
             return _context.Article.Any(e => e.ArticleId == id);
         }
-
-
-        
-
     }
-
 }
