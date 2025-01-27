@@ -31,8 +31,9 @@ namespace zltNewsletter.Controllers
             var CurrentUrl = _httpContextAccessor.HttpContext.Request.Scheme +
                              "://" + _httpContextAccessor.HttpContext.Request.Host;
 
+            // Not sure why the wwwroot has to be there - but only then it works 
             // Change this to right URL where files ends - will be inserted in TinyMce html
-            var FileDestination = CurrentUrl + "/mceupload/" + file.FileName;
+            var FileDestination = CurrentUrl + "/wwwroot/mceupload/" + file.FileName;
 
             var response = new { Location = FileDestination };
             return Ok(response);
