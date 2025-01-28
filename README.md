@@ -7,6 +7,9 @@ There are 2 projects in here, the zltNewsletter - which forms the backend, and a
 
 Be aware, that pictures that is included in the articles are stored on the backend, see the ImageController where they land.
 
-No user identity/security are build in this, you have to add your own to the solution.
+Standard MS identity service is enabled - see online
+https://learn.microsoft.com/en-us/aspnet/core/security/authentication/scaffold-identity?view=aspnetcore-9.0&tabs=visual-studio#use-another-app-to-add-users
+for info how to create new accounts (not possible on web because pages and functions have been blanked)
 
 Have fun, and let me know if it was useful.
+
